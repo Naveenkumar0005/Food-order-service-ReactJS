@@ -1,0 +1,26 @@
+{
+  "name": "reactwork",
+  "version": "1.0.0",
+  "description": "react learning",
+  "keywords": [
+    "react"
+  ],
+  "license": "ISC",
+  "author": "naveen kumar",
+  "type": "commonjs",
+  
+  "scripts": {
+    "test": "jest"
+  },
+  "devDependencies": {
+    "parcel": "^2.16.4"
+  },
+  "dependencies": {
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0"
+  },
+  "browserslist": [
+    "last 2 Chrome version",
+    "last 2 Edge version"
+  ]
+}
