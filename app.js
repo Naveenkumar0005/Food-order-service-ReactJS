@@ -33,7 +33,7 @@ import {createBrowserRouter, RouterProvider,Outlet} from "react-router-dom";
 const AppLayout = () => {
     return ( 
         <div className="app">
-            <h1>Iraj- Food delivery service</h1>
+            <h1>Naveen - Food delivery service</h1>
             <Header />
             <Outlet />
             </div>
