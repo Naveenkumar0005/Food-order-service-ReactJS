@@ -1,4 +1,4 @@
-import React,{lazy, Suspense} from "react";
+import React,{lazy, Suspense, useState, useEffect} from "react";
 import { createRoot } from "react-dom/client";
 import Header from "./src/components/Header";
 import Body from "./src/components/Body";
@@ -8,7 +8,7 @@ import Error from "./src/components/Error";
 import "./src/index.css";
 import {createBrowserRouter, RouterProvider,Outlet} from "react-router-dom";
 import RestaurantMenu from "./src/components/RestaurantMenu";
-
+import UserContext from "./src/utils/UserContext";
 // we are going to create a food ordering app using react and parcel bundler
 /*
 * Header
@@ -33,14 +33,27 @@ import RestaurantMenu from "./src/components/RestaurantMenu";
 const Grocery = lazy(() => import("./src/components/Grocery"));
 
 const AppLayout = () => {
+   const [userName, setUserName] = useState();
+   //authentication
+  useEffect(() => {
+    // Make an API call and send username and password
+    const data = {
+      name: "Naveen",
+    };
+    setUserName(data.name);
+  }, []);
+
     return ( 
+      <UserContext.Provider value={{ loggedInUser: userName, setUserName }}>         
         <div className="app">
             <h1>Naveen - Food delivery service</h1>
-            <Header />
+            <Header />           
             <Outlet />
-            </div>
+          </div>
+      </UserContext.Provider>
+            
         );
-    }
+    };
 
     const appRouter = createBrowserRouter([
         {
