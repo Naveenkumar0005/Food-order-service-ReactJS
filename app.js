@@ -2,35 +2,19 @@ import React,{lazy, Suspense, useState, useEffect} from "react";
 import { createRoot } from "react-dom/client";
 import Header from "./src/components/Header";
 import Body from "./src/components/Body";
-import About from "./src/components/About";
 import Contact from "./src/components/Contact";
 import Error from "./src/components/Error";
 import "./src/index.css";
 import {createBrowserRouter, RouterProvider,Outlet} from "react-router-dom";
 import RestaurantMenu from "./src/components/RestaurantMenu";
+import { Provider } from "react-redux";
+import appStore from "./src/utils/appStore";
+import Cart from "./src/components/Cart";
 import UserContext from "./src/utils/UserContext";
-// we are going to create a food ordering app using react and parcel bundler
-/*
-* Header
-  - logo
-  - nav items
 
-* Body
-  - search bar
-  - restaurant container
-    - restaurant card
-      - image
-      - name
-      - rating
-      - cuisines
-* Footer
-  - copyright
-  - Links
-  - Address
-  - Contact         
-*/
 
 const Grocery = lazy(() => import("./src/components/Grocery"));
+const About = lazy(() => import("./src/components/About"));
 
 const AppLayout = () => {
    const [userName, setUserName] = useState();
@@ -43,17 +27,18 @@ const AppLayout = () => {
     setUserName(data.name);
   }, []);
 
-    return ( 
-      <UserContext.Provider value={{ loggedInUser: userName, setUserName }}>         
+  return (
+    <Provider store={appStore}>
+      <UserContext.Provider value={{ loggedInUser: userName, setUserName }}>
         <div className="app">
             <h1>Naveen - Food delivery service</h1>
             <Header />           
             <Outlet />
           </div>
       </UserContext.Provider>
-            
-        );
-    };
+    </Provider>
+  );
+};
 
     const appRouter = createBrowserRouter([
         {
@@ -62,15 +47,19 @@ const AppLayout = () => {
             children: [
               {
                 path: "/",
-                element: <Body />
+                element: <Body />,
               },
               { 
           path: "/about",
-          element: <About />
+        element: (
+          <Suspense fallback={<h1>Loading....</h1>}>
+            <About />
+          </Suspense>
+        ),
         },
         {
             path: "/contact",
-            element: <Contact />
+            element: <Contact />,
         },
         {
             path: "/grocery",
@@ -82,8 +71,12 @@ const AppLayout = () => {
         },
         {
             path: "/restaurants/:resId",  
-            element: <RestaurantMenu />
-        }
+            element: <RestaurantMenu />,
+        },
+	      {
+        path: "/cart",
+        element: <Cart />,
+      }
       ],
             errorElement: <Error />
         },
