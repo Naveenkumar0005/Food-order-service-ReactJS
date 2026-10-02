@@ -33,7 +33,7 @@ useEffect(() => {
         <div className="body">
             <div className="flex justify-left items-center">
                 <div className="search">
-                    <input type="text" className="border border-black" placeholder="search" value={searchText} 
+                    <input type="text"  data-testid="searchInput" className="border border-black" placeholder="search" value={searchText} 
                     onChange={(e) => { setSearchText(e.target.value);  }}  />
                     <button className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-5 rounded m-2" onClick={() => {
                         // filter logic for search
@@ -65,7 +65,7 @@ useEffect(() => {
                 {filterRestaurants.map((restaurant) => (   
                     // if the restaurant is promoted, then we will add a "Promoted" label to the restaurant card  
                                
-               <RestaurantCard key={restaurant.info.id} restObj={restaurant} />
+               <RestaurantCard key={restaurant?.info.id} restObj={restaurant?.info} />
                 ))}
             </div>
         </div>

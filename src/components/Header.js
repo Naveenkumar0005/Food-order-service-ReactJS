@@ -5,6 +5,7 @@ import useOnlineStatus from "../utils/useOnlineStatus";
 import UserContext from "../utils/UserContext";
 import { useSelector } from "react-redux";
 
+console.log("foodLogo:", foodLogo);
 const Header = () => {
     const [btnName, setBtnName] = useState("Login");
     const isOnline = useOnlineStatus();

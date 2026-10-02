@@ -148,7 +148,9 @@ Jest uses the `jsdom` environment and collects coverage. Tests can be added unde
 - jest configuration
 - npx create-jest
 - npm install -D jest-environment-jsdom
-
+- npm install -D @babel/preset-react  - to make JSX work in test cases
+- include this babel/preset-react library in babel configuration babel-config.js file
+- npm i -D @testing-library/jest-dom
 ## License
 
 This project is for educational and self learning purposes.

@@ -2,9 +2,9 @@ import {CDN_URL} from "../utils/constants";
 const RestaurantCard = (props) => {
     const {restObj} = props;
 
-const {name, cuisines, avgRating, cloudinaryImageId, sla,costForTwo} = restObj?.info;
+const {name, cuisines, avgRating, cloudinaryImageId, sla,costForTwo} = restObj;
     return (    
-        <div className="m-1 p-1 w-[200px] shadow-lg bg-pink-50 hover:bg-pink-100 ">
+        <div data-testid="resCard" className="m-1 p-1 w-[200px] shadow-lg bg-pink-50 hover:bg-pink-100 ">
             <img className="restaurant-logo" src={CDN_URL + cloudinaryImageId} alt="restaurant" />
             <h3 className="font-bold">{name}</h3>
             <h4>{cuisines.join(", ")}</h4>
